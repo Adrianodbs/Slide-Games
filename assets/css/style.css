@@ -1,0 +1,157 @@
+*, *::after, *::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+}
+
+/* Precisa colocar o HTML também, pois é o elemento pai */
+html, body{
+  height: 100%;
+}
+
+body{
+  background-color: #1f2029;
+}
+
+.wrapper{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.slide-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.slide-list{
+  display: flex;
+}
+
+.slide-item{
+  /* Essa propriedade serve para a classe inferior obedecer ao width */
+  flex-shrink: 0;
+
+  padding: 0 10px;
+  width: 90vw;
+  /* Esse cursor é o de arrastar */
+  cursor: grab;
+}
+
+.slide-item img{
+  border-radius: 10px;
+  width: 100%;
+}
+
+.slide-content{
+  /* O primeiro é na horizontal, o segundo na vertical e o terceiro é a 'opacidade' */
+  box-shadow: #070707 0px 12px 12px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  position: relative;
+}
+
+.slide-description{
+  background: linear-gradient(to top, #000, transparent);
+  border-radius: 10px;
+  color: #fff;
+  position: absolute;
+  padding: 30px;
+  bottom: 0;
+  width: 100%;
+}
+
+.slide-description h3{
+  font-family: 'Koulen', sans-serif;
+  font-size: 48px;
+
+  /* Para manipular a distância do titulo */
+  position: relative;
+  top: 16px;
+}
+
+.slide-description p{
+  font-family: 'PT Sans', sans-serif;
+  font-size: 24px;
+}
+
+.slide-nav-button{
+  position: absolute;
+  z-index: 1;
+  
+  color: #fff;
+  background: transparent;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.slide-nav-previous{
+  left: 20px;
+}
+
+.slide-nav-next{
+  right: 20px;
+}
+
+.slide-controls{
+  margin: 30px auto 0;
+}
+
+.slide-control-button{
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0 3px;
+}
+
+.slide-control-button.active{
+  color: #cd8cf5;
+}
+
+/* Responsivo */
+
+@media screen and (max-width:768px){
+  .slide-description{
+    padding: 10px;
+  }
+
+  .slide-description h3{
+    font-size: 24px;
+    top: 0;
+  }
+
+  .slide-description p {
+    display: none;
+  }
+
+  .slide-control-button{
+    font-size: 14px;
+  }
+
+  .slide-controls{
+    margin: 15px auto 0;
+  }
+
+  .slide-nav-button{
+    margin-top: -20px;
+    font-size: 28px;
+ 
+  }
+  
+  .slide-nav-previous{
+    left: 10px;
+  }
+  
+  .slide-nav-next{
+    right: 10px;
+  }
+  
+  .slide-controls{
+    margin: 30px auto 0;
+  }
+}
