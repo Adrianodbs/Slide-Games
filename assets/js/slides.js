@@ -10,6 +10,7 @@ const ControlsWrapper = document.querySelector(
   '[data-slide="controls-wrapper"]'
 )
 const slideItems = document.querySelectorAll('[data-slide="item"]')
+let controlButtons
 
 const state = {
   startingPoint: 0,
@@ -59,6 +60,8 @@ function createControlButtons() {
   })
 }
 
+function activeControlButton() {}
+
 function onMouseDown(event, index) {
   const slideItem = event.currentTarget
   state.startingPoint = event.clientX
@@ -88,8 +91,8 @@ function onMouseUp(event) {
   slideItem.removeEventListener('mousemove', onMouseMove)
 }
 
-function onControlButtonClick(event, index, controlButtons) {
-  const controlButton = event.currentTarget
+function onControlButtonClick(index) {
+  const controlButton = controlButtons[index]
   controlButtons.forEach(function (controllButtonItem) {
     controllButtonItem.classList.remove('active')
   })
@@ -101,13 +104,11 @@ navNextButton.addEventListener('click', nextSlide)
 navPreviousButton.addEventListener('click', previousSlide)
 
 function setListeners() {
-  const controlButtons = document.querySelectorAll(
-    '[data-slide="control-button"]'
-  )
+  controlButtons = document.querySelectorAll('[data-slide="control-button"]')
 
   controlButtons.forEach(function (controlButton, index) {
     controlButton.addEventListener('click', function (event) {
-      onControlButtonClick(event, index, controlButtons)
+      onControlButtonClick(index)
     })
   })
 
