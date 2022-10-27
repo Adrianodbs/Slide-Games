@@ -88,7 +88,12 @@ function onMouseUp(event) {
   slideItem.removeEventListener('mousemove', onMouseMove)
 }
 
-function onControlButtonClick(index) {
+function onControlButtonClick(event, index, controlButtons) {
+  const controlButton = event.currentTarget
+  controlButtons.forEach(function (controllButtonItem) {
+    controllButtonItem.classList.remove('active')
+  })
+  controlButton.classList.add('active')
   setVisibleSlide({ index })
 }
 
@@ -102,7 +107,7 @@ function setListeners() {
 
   controlButtons.forEach(function (controlButton, index) {
     controlButton.addEventListener('click', function (event) {
-      onControlButtonClick(index)
+      onControlButtonClick(event, index, controlButtons)
     })
   })
 
