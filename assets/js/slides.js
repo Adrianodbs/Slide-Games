@@ -37,6 +37,8 @@ function getCenterPosition({ index }) {
 function setVisibleSlide({ index }) {
   const position = getCenterPosition({ index })
   state.currentSlideIndex = index
+  slideList.style.transition = 'transform .5s'
+  activeControlButton({ index })
   translateSlide({ position: position })
 }
 
@@ -60,13 +62,20 @@ function createControlButtons() {
   })
 }
 
-function activeControlButton() {}
+function activeControlButton({ index }) {
+  const controlButton = controlButtons[index]
+  controlButtons.forEach(function (controllButtonItem) {
+    controllButtonItem.classList.remove('active')
+  })
+  controlButton.classList.add('active')
+}
 
 function onMouseDown(event, index) {
   const slideItem = event.currentTarget
   state.startingPoint = event.clientX
   state.currentPoint = event.clientX - state.savedPosition
   state.currentSlideIndex = index
+  slideList.style.transition = 'none'
   slideItem.addEventListener('mousemove', onMouseMove)
 }
 
@@ -92,11 +101,6 @@ function onMouseUp(event) {
 }
 
 function onControlButtonClick(index) {
-  const controlButton = controlButtons[index]
-  controlButtons.forEach(function (controllButtonItem) {
-    controllButtonItem.classList.remove('active')
-  })
-  controlButton.classList.add('active')
   setVisibleSlide({ index })
 }
 

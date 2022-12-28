@@ -30,6 +30,7 @@ body{
 
 .slide-list{
   display: flex;
+
 }
 
 .slide-item{
@@ -106,7 +107,7 @@ body{
   color: #fff;
   cursor: pointer;
   font-size: 18px;
-  margin: 0 3px;
+  margin: 0 5px;
 }
 
 .slide-control-button.active{
